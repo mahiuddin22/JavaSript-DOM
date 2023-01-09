@@ -50,7 +50,7 @@ let completeTask = function(){
 }
 
 let deleteTask = function(){
-    let listItem = this.ParentNode;
+    let listItem = this.parentNode;
     let ul = listItem.parentNode;
     ul.removeChild(listItem);
 }
@@ -63,6 +63,14 @@ let bindIncompleteItems = function(taskItem, checkboxClick){
 let bindCompleteItems = function(taskItem, deleteBtnClick){
     let deleteButton = taskItem.querySelector('.delete');
     deleteButton.onclick = deleteBtnClick;
+}
+
+for(let i = 0; i< todoUl.children.length; i++){
+    bindIncompleteItems(todoUl.children[i], completeTask);
+}
+
+for(let i = 0; i< completeUl.children.length; i++){
+    bindCompleteItems(completeUl.children[i], deleteTask);
 }
 
 
