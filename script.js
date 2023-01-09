@@ -35,10 +35,35 @@ let addTask = function(event){
 }
 
 let completeTask = function(){
-    
+    let listItem = this.parentNode;
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'delete';
+    deleteBtn.className = 'delete';
+    listItem.appendChild(deleteBtn);
+
+    let checkBox = listItem.querySelector('input[type = "checkbox"]');
+    checkBox.remove();
+
+    completeUl.appendChild(listItem);
+    bindCompleteItems(listItem, deleteTask);
+
+}
+
+let deleteTask = function(){
+    let listItem = this.ParentNode;
+    let ul = listItem.parentNode;
+    ul.removeChild(listItem);
 }
 
 let bindIncompleteItems = function(taskItem, checkboxClick){
     let checkBox = taskItem.querySelector('input[type = checkbox]');
     checkBox.onchange = checkboxClick;
 }
+
+let bindCompleteItems = function(taskItem, deleteBtnClick){
+    let deleteButton = taskItem.querySelector('.delete');
+    deleteButton.onclick = deleteBtnClick;
+}
+
+
+form.addEventListener('submit', addTask);
